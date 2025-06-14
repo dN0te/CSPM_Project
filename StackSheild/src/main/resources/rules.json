@@ -1,0 +1,24 @@
+[
+  {
+    "id": "S3-001",
+    "service": "S3",
+    "resource": "Bucket: public-bucket",
+    "message": "Bucket grants FULL_CONTROL to all users",
+    "severity": "Critical",
+    "recommendation": "Restrict bucket ACL",
+    "matchField": "eventID",
+    "matchType": "equals",
+    "matchValue": "s3-critical-full-control"
+  },
+  {
+    "id": "IAM-002",
+    "service": "IAM",
+    "resource": "User",
+    "message": "Password policy is too weak",
+    "severity": "High",
+    "recommendation": "Strengthen password policy",
+    "matchField": "eventName",
+    "matchType": "contains",
+    "matchValue": "UpdatePasswordPolicy"
+  }
+]

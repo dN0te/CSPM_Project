@@ -1,0 +1,281 @@
+[
+  {
+    "eventName": "CreateAccessKey",
+    "userIdentity": {
+      "type": "Root"
+    },
+    "eventTime": "2025-05-17T10:00:00Z",
+    "eventID": "iam-critical-root-access",
+    "sourceIPAddress": "3.14.159.26",
+    "hostName": "host-us-01"
+  },
+  {
+    "eventName": "UpdateAccountPasswordPolicy",
+    "requestParameters": {
+      "passwordReusePrevention": 0
+    },
+    "eventTime": "2025-05-17T10:05:00Z",
+    "eventID": "iam-high-pwd-reuse",
+    "sourceIPAddress": "81.2.69.142",
+    "hostName": "host-uk-02"
+  },
+  {
+    "eventName": "CreateUser",
+    "userIdentity": {
+      "type": "IAMUser",
+      "userName": "UserNoMFA"
+    },
+    "eventTime": "2025-05-17T10:10:00Z",
+    "eventID": "iam-medium-no-mfa",
+    "sourceIPAddress": "185.86.149.34",
+    "hostName": "host-de-03"
+  },
+  {
+    "eventName": "CreateGroup",
+    "requestParameters": {
+      "groupName": "EmptyGroup"
+    },
+    "eventTime": "2025-05-17T10:15:00Z",
+    "eventID": "iam-low-empty-group",
+    "sourceIPAddress": "80.12.242.10",
+    "hostName": "host-fr-04"
+  },
+  {
+    "eventName": "StopConfigurationRecorder",
+    "requestParameters": {
+      "configurationRecorderName": "default"
+    },
+    "eventTime": "2025-05-17T10:20:00Z",
+    "eventID": "config-critical-disabled",
+    "sourceIPAddress": "133.130.87.71",
+    "hostName": "host-jp-05"
+  },
+  {
+    "eventName": "PutConfigurationRecorder",
+    "requestParameters": {
+      "recordingGroup": {
+        "includeGlobalResourceTypes": false
+      }
+    },
+    "eventTime": "2025-05-17T10:25:00Z",
+    "eventID": "config-high-global-off",
+    "sourceIPAddress": "13.54.63.132",
+    "hostName": "host-au-06"
+  },
+  {
+    "eventName": "PutDeliveryChannel",
+    "requestParameters": {
+      "s3BucketName": "config-unencrypted-bucket"
+    },
+    "eventTime": "2025-05-17T10:30:00Z",
+    "eventID": "config-medium-unencrypted-bucket",
+    "sourceIPAddress": "142.250.190.78",
+    "hostName": "host-ca-07"
+  },
+  {
+    "eventName": "PutConfigurationRecorder",
+    "requestParameters": {
+      "roleARN": "arn:aws:iam::123456789012:role/OldConfigRole"
+    },
+    "eventTime": "2025-05-17T10:35:00Z",
+    "eventID": "config-low-old-role",
+    "sourceIPAddress": "201.17.104.24",
+    "hostName": "host-br-08"
+  },
+  {
+    "eventName": "DeleteTrail",
+    "requestParameters": {
+      "name": "CriticalTrail"
+    },
+    "eventTime": "2025-05-14T10:40:00Z",
+    "eventID": "trail-critical-deleted",
+    "sourceIPAddress": "103.120.30.12",
+    "hostName": "host-in-09"
+  },
+  {
+    "eventName": "CreateTrail",
+    "requestParameters": {
+      "isMultiRegionTrail": false
+    },
+    "eventTime": "2025-05-17T10:45:00Z",
+    "eventID": "trail-high-single-region",
+    "sourceIPAddress": "121.78.73.198",
+    "hostName": "host-kr-10"
+  },
+  {
+    "eventName": "UpdateTrail",
+    "requestParameters": {
+      "s3BucketName": "trail-logs-unencrypted"
+    },
+    "eventTime": "2025-05-17T10:50:00Z",
+    "eventID": "trail-medium-unencrypted-s3",
+    "sourceIPAddress": "58.14.2.3",
+    "hostName": "host-cn-11"
+  },
+  {
+    "eventName": "CreateTrail",
+    "requestParameters": {
+      "cloudWatchLogsLogGroupArn": ""
+    },
+    "eventTime": "2025-05-17T10:55:00Z",
+    "eventID": "trail-low-no-logs",
+    "sourceIPAddress": "5.101.78.61",
+    "hostName": "host-ru-12"
+  },
+  {
+    "eventName": "PutMetricFilter",
+    "requestParameters": {
+      "filterPattern": "{ $.userIdentity.type != \"Root\" }"
+    },
+    "eventTime": "2025-05-17T11:00:00Z",
+    "eventID": "cw-critical-no-root",
+    "sourceIPAddress": "196.25.15.44",
+    "hostName": "host-za-13"
+  },
+  {
+    "eventName": "PutMetricFilter",
+    "requestParameters": {
+      "filterPattern": "AuthorizeSecurityGroup*"
+    },
+    "eventTime": "2025-05-13T11:05:00Z",
+    "eventID": "cw-high-no-sg-alarm",
+    "sourceIPAddress": "20.202.195.166",
+    "hostName": "host-mx-14"
+  },
+  {
+    "eventName": "PutBucketAcl",
+    "requestParameters": {
+      "bucketName": "public-bucket",
+      "AccessControlPolicy": {
+        "Grants": [
+          {
+            "Grantee": {
+              "URI": "http://acs.amazonaws.com/groups/global/AllUsers"
+            },
+            "Permission": "FULL_CONTROL"
+          }
+        ]
+      }
+    },
+    "eventTime": "2025-05-17T11:40:00Z",
+    "eventID": "s3-critical-full-control",
+    "sourceIPAddress": "185.14.18.218",
+    "hostName": "host-es-15"
+  },
+  {
+    "eventName": "PutMetricAlarm",
+    "requestParameters": {
+      "alarmName": "FailedLoginAlarm",
+      "threshold": 0
+    },
+    "eventTime": "2025-05-17T11:10:00Z",
+    "eventID": "cw-medium-zero-threshold",
+    "sourceIPAddress": "62.149.128.150",
+    "hostName": "host-it-16"
+  },
+  {
+    "eventName": "PutRetentionPolicy",
+    "requestParameters": {
+      "logGroupName": "/aws/app/logs",
+      "retentionInDays": 1
+    },
+    "eventTime": "2025-05-17T11:15:00Z",
+    "eventID": "cw-low-short-retention",
+    "sourceIPAddress": "185.109.116.8",
+    "hostName": "host-nl-17"
+  },
+  {
+    "eventName": "SetTopicAttributes",
+    "requestParameters": {
+      "attributeValue": "{\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":\"*\",\"Action\":\"SNS:Publish\"}]}"
+    },
+    "eventTime": "2025-05-17T11:20:00Z",
+    "eventID": "sns-critical-wildcard",
+    "sourceIPAddress": "185.15.56.21",
+    "hostName": "host-se-18"
+  },
+  {
+    "eventName": "CreateTopic",
+    "requestParameters": {
+      "name": "NoPolicyTopic"
+    },
+    "eventTime": "2025-05-12T11:25:00Z",
+    "eventID": "sns-high-no-policy",
+    "sourceIPAddress": "186.128.0.229",
+    "hostName": "host-ar-19"
+  },
+  {
+    "eventName": "Subscribe",
+    "requestParameters": {
+      "topicArn": "arn:aws:sns:...:123456789012:MyTopic",
+      "endpoint": "arn:aws:sqs:...:999999999999:OtherQueue"
+    },
+    "eventTime": "2025-05-17T11:30:00Z",
+    "eventID": "sns-medium-cross-sub",
+    "sourceIPAddress": "41.225.123.178",
+    "hostName": "host-eg-20"
+  },
+  {
+    "eventName": "CreateTopic",
+    "requestParameters": {
+      "name": "internal-alerts-sensitive"
+    },
+    "eventTime": "2025-05-13T11:35:00Z",
+    "eventID": "sns-low-sensitive-name",
+    "sourceIPAddress": "102.89.17.22",
+    "hostName": "host-ng-21"
+  },
+  {
+    "eventName": "PutBucketAcl",
+    "requestParameters": {
+      "bucketName": "public-bucket",
+      "AccessControlPolicy": {
+        "Grants": [
+          {
+            "Grantee": {
+              "URI": "http://acs.amazonaws.com/groups/global/AllUsers"
+            },
+            "Permission": "FULL_CONTROL"
+          }
+        ]
+      }
+    },
+    "eventTime": "2025-05-17T11:40:00Z",
+    "eventID": "s3-critical-full-control",
+    "sourceIPAddress": "103.21.34.15",
+    "hostName": "host-sg-22"
+  },
+  {
+    "eventName": "PutBucketEncryption",
+    "requestParameters": {
+      "bucketName": "unencrypted-bucket",
+      "serverSideEncryptionConfiguration": {}
+    },
+    "eventTime": "2025-05-17T11:45:00Z",
+    "eventID": "s3-high-no-encryption",
+    "sourceIPAddress": "185.44.30.20",
+    "hostName": "host-ch-23"
+  },
+  {
+    "eventName": "PutBucketLogging",
+    "requestParameters": {
+      "bucketName": "my-bucket",
+      "bucketLoggingStatus": {}
+    },
+    "eventTime": "2025-05-14T11:50:00Z",
+    "eventID": "s3-medium-no-logging",
+    "sourceIPAddress": "185.103.159.199",
+    "hostName": "host-fi-24"
+  },
+  {
+    "eventName": "PutBucketPolicy",
+    "requestParameters": {
+      "bucketName": "example-bucket",
+      "policy": "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"s3:GetObject\",\"Resource\":\"arn:aws:s3:::example-bucket/*\"}]}"
+    },
+    "eventTime": "2025-05-17T11:55:00Z",
+    "eventID": "s3-low-wildcard",
+    "sourceIPAddress": "190.57.89.129",
+    "hostName": "host-cl-25"
+  }
+]

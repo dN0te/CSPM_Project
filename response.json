@@ -1,0 +1,453 @@
+[
+    {
+        "log": {
+            "eventName": "CreateAccessKey",
+            "userIdentity": {
+                "type": "Root"
+            },
+            "eventTime": "2025-05-17T10:00:00Z",
+            "eventID": "iam-critical-root-access"
+        },
+        "alert": {
+            "resource": "Root User",
+            "description": "Root access key created",
+            "recommendation": "Avoid using root user access keys.",
+            "service": "IAM",
+            "severity": "Critical",
+            "id": "IAM-001"
+        }
+    },
+    {
+        "log": {
+            "eventName": "UpdateAccountPasswordPolicy",
+            "requestParameters": {
+                "passwordReusePrevention": 0
+            },
+            "eventTime": "2025-05-17T10:05:00Z",
+            "eventID": "iam-high-pwd-reuse"
+        },
+        "alert": {
+            "resource": "Password Policy",
+            "description": "Password reuse prevention is disabled (set to 0)",
+            "recommendation": "Enable password reuse prevention.",
+            "service": "IAM",
+            "severity": "High",
+            "id": "IAM-002"
+        }
+    },
+    {
+        "log": {
+            "eventName": "CreateUser",
+            "userIdentity": {
+                "type": "IAMUser",
+                "userName": "UserNoMFA"
+            },
+            "eventTime": "2025-05-17T10:10:00Z",
+            "eventID": "iam-medium-no-mfa"
+        },
+        "alert": {
+            "resource": "User: UserNoMFA",
+            "description": "User created without MFA enabled",
+            "recommendation": "Enforce MFA for IAM users.",
+            "service": "IAM",
+            "severity": "Medium",
+            "id": "IAM-003"
+        }
+    },
+    {
+        "log": {
+            "eventName": "CreateGroup",
+            "requestParameters": {
+                "groupName": "EmptyGroup"
+            },
+            "eventTime": "2025-05-17T10:15:00Z",
+            "eventID": "iam-low-empty-group"
+        },
+        "alert": {
+            "resource": "Group: EmptyGroup",
+            "description": "IAM group created but has no users",
+            "recommendation": "Remove or populate empty groups.",
+            "service": "IAM",
+            "severity": "Low",
+            "id": "IAM-004"
+        }
+    },
+    {
+        "log": {
+            "eventName": "StopConfigurationRecorder",
+            "requestParameters": {
+                "configurationRecorderName": "default"
+            },
+            "eventTime": "2025-05-17T10:20:00Z",
+            "eventID": "config-critical-disabled"
+        },
+        "alert": {
+            "resource": "Configuration Recorder: default",
+            "description": "Configuration Recorder is stopped",
+            "recommendation": "Keep configuration recorder enabled for audit logs.",
+            "service": "Config",
+            "severity": "Critical",
+            "id": "Config-001"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutConfigurationRecorder",
+            "requestParameters": {
+                "recordingGroup": {
+                    "includeGlobalResourceTypes": false
+                }
+            },
+            "eventTime": "2025-05-17T10:25:00Z",
+            "eventID": "config-high-global-off"
+        },
+        "alert": {
+            "resource": "Recording Group",
+            "description": "Global resource types are excluded from recording",
+            "recommendation": "Include global resource types for complete auditing.",
+            "service": "Config",
+            "severity": "High",
+            "id": "Config-002"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutDeliveryChannel",
+            "requestParameters": {
+                "s3BucketName": "config-unencrypted-bucket"
+            },
+            "eventTime": "2025-05-17T10:30:00Z",
+            "eventID": "config-medium-unencrypted-bucket"
+        },
+        "alert": {
+            "resource": "Delivery Channel Bucket",
+            "description": "Delivery channel uses unencrypted S3 bucket",
+            "recommendation": "Use encrypted buckets for delivery channel.",
+            "service": "Config",
+            "severity": "Medium",
+            "id": "Config-003"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutConfigurationRecorder",
+            "requestParameters": {
+                "roleARN": "arn:aws:iam::123456789012:role/OldConfigRole"
+            },
+            "eventTime": "2025-05-17T10:35:00Z",
+            "eventID": "config-low-old-role"
+        },
+        "alert": {
+            "resource": "Configuration Recorder Role",
+            "description": "Old role ARN configured for configuration recorder",
+            "recommendation": "Update configuration recorder role ARN.",
+            "service": "Config",
+            "severity": "Low",
+            "id": "Config-004"
+        }
+    },
+    {
+        "log": {
+            "eventName": "DeleteTrail",
+            "requestParameters": {
+                "name": "CriticalTrail"
+            },
+            "eventTime": "2025-05-17T10:40:00Z",
+            "eventID": "trail-critical-deleted"
+        },
+        "alert": {
+            "resource": "Trail: CriticalTrail",
+            "description": "Critical CloudTrail trail was deleted",
+            "recommendation": "Ensure critical trails are protected from deletion.",
+            "service": "CloudTrail",
+            "severity": "Critical",
+            "id": "CT-001"
+        }
+    },
+    {
+        "log": {
+            "eventName": "CreateTrail",
+            "requestParameters": {
+                "isMultiRegionTrail": false
+            },
+            "eventTime": "2025-05-17T10:45:00Z",
+            "eventID": "trail-high-single-region"
+        },
+        "alert": {
+            "resource": "Trail",
+            "description": "Trail is single-region, not multi-region",
+            "recommendation": "Enable multi-region trails for broader coverage.",
+            "service": "CloudTrail",
+            "severity": "High",
+            "id": "CT-002"
+        }
+    },
+    {
+        "log": {
+            "eventName": "UpdateTrail",
+            "requestParameters": {
+                "s3BucketName": "trail-logs-unencrypted"
+            },
+            "eventTime": "2025-05-17T10:50:00Z",
+            "eventID": "trail-medium-unencrypted-s3"
+        },
+        "alert": {
+            "resource": "Trail Logs",
+            "description": "Trail logs stored in unencrypted S3 bucket",
+            "recommendation": "Encrypt S3 buckets for CloudTrail logs.",
+            "service": "CloudTrail",
+            "severity": "Medium",
+            "id": "CT-003"
+        }
+    },
+    {
+        "log": {
+            "eventName": "CreateTrail",
+            "requestParameters": {
+                "cloudWatchLogsLogGroupArn": ""
+            },
+            "eventTime": "2025-05-17T10:55:00Z",
+            "eventID": "trail-low-no-logs"
+        },
+        "alert": {
+            "resource": "Trail",
+            "description": "Trail created without CloudWatch Logs integration",
+            "recommendation": "Enable CloudWatch Logs for trail monitoring.",
+            "service": "CloudTrail",
+            "severity": "Low",
+            "id": "CT-004"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutMetricFilter",
+            "requestParameters": {
+                "filterPattern": "{ $.userIdentity.type != \"Root\" }"
+            },
+            "eventTime": "2025-05-17T11:00:00Z",
+            "eventID": "cw-critical-no-root"
+        },
+        "alert": {
+            "resource": "Metric Filter",
+            "description": "Metric filter excludes root user",
+            "recommendation": "Ensure root user activity is monitored.",
+            "service": "CloudWatch",
+            "severity": "Critical",
+            "id": "CW-001"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutMetricFilter",
+            "requestParameters": {
+                "filterPattern": "AuthorizeSecurityGroup*"
+            },
+            "eventTime": "2025-05-17T11:05:00Z",
+            "eventID": "cw-high-no-sg-alarm"
+        },
+        "alert": {
+            "resource": "Metric Filter",
+            "description": "No alarm set for security group authorizations",
+            "recommendation": "Set alarms to monitor security group changes.",
+            "service": "CloudWatch",
+            "severity": "High",
+            "id": "CW-002"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutMetricAlarm",
+            "requestParameters": {
+                "alarmName": "FailedLoginAlarm",
+                "threshold": 0
+            },
+            "eventTime": "2025-05-17T11:10:00Z",
+            "eventID": "cw-medium-zero-threshold"
+        },
+        "alert": {
+            "resource": "Metric Alarm: FailedLoginAlarm",
+            "description": "Alarm threshold set to zero",
+            "recommendation": "Set proper thresholds for metric alarms.",
+            "service": "CloudWatch",
+            "severity": "Medium",
+            "id": "CW-003"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutRetentionPolicy",
+            "requestParameters": {
+                "logGroupName": "/aws/app/logs",
+                "retentionInDays": 1
+            },
+            "eventTime": "2025-05-17T11:15:00Z",
+            "eventID": "cw-low-short-retention"
+        },
+        "alert": {
+            "resource": "Log Group: /aws/app/logs",
+            "description": "Log retention set to 1 day",
+            "recommendation": "Increase log retention period.",
+            "service": "CloudWatch",
+            "severity": "Low",
+            "id": "CW-004"
+        }
+    },
+    {
+        "log": {
+            "eventName": "SetTopicAttributes",
+            "requestParameters": {
+                "attributeValue": "{\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":\"*\",\"Action\":\"SNS:Publish\"}]}"
+            },
+            "eventTime": "2025-05-17T11:20:00Z",
+            "eventID": "sns-critical-wildcard"
+        },
+        "alert": {
+            "resource": "Topic with wildcard policy",
+            "description": "SNS topic allows publishing from any principal (*)",
+            "recommendation": "Restrict SNS topic policies to specific principals.",
+            "service": "SNS",
+            "severity": "Critical",
+            "id": "SNS-001"
+        }
+    },
+    {
+        "log": {
+            "eventName": "CreateTopic",
+            "requestParameters": {
+                "name": "NoPolicyTopic"
+            },
+            "eventTime": "2025-05-17T11:25:00Z",
+            "eventID": "sns-high-no-policy"
+        },
+        "alert": {
+            "resource": "Topic: NoPolicyTopic",
+            "description": "SNS topic created without policy",
+            "recommendation": "Add appropriate policies to SNS topics.",
+            "service": "SNS",
+            "severity": "High",
+            "id": "SNS-002"
+        }
+    },
+    {
+        "log": {
+            "eventName": "Subscribe",
+            "requestParameters": {
+                "topicArn": "arn:aws:sns:...:123456789012:MyTopic",
+                "endpoint": "arn:aws:sqs:...:999999999999:OtherQueue"
+            },
+            "eventTime": "2025-05-17T11:30:00Z",
+            "eventID": "sns-medium-cross-sub"
+        },
+        "alert": {
+            "resource": "Subscription",
+            "description": "SNS topic subscribed by external SQS queue",
+            "recommendation": "Review cross-account SNS subscriptions.",
+            "service": "SNS",
+            "severity": "Medium",
+            "id": "SNS-003"
+        }
+    },
+    {
+        "log": {
+            "eventName": "CreateTopic",
+            "requestParameters": {
+                "name": "internal-alerts-sensitive"
+            },
+            "eventTime": "2025-05-17T11:35:00Z",
+            "eventID": "sns-low-sensitive-name"
+        },
+        "alert": {
+            "resource": "Topic: internal-alerts-sensitive",
+            "description": "SNS topic name contains sensitive words",
+            "recommendation": "Avoid sensitive terms in topic names.",
+            "service": "SNS",
+            "severity": "Low",
+            "id": "SNS-004"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutBucketAcl",
+            "requestParameters": {
+                "bucketName": "public-bucket",
+                "AccessControlPolicy": {
+                    "Grants": [
+                        {
+                            "Grantee": {
+                                "URI": "http://acs.amazonaws.com/groups/global/AllUsers"
+                            },
+                            "Permission": "FULL_CONTROL"
+                        }
+                    ]
+                }
+            },
+            "eventTime": "2025-05-17T11:40:00Z",
+            "eventID": "s3-critical-full-control"
+        },
+        "alert": {
+            "resource": "Bucket: public-bucket",
+            "description": "Bucket grants FULL_CONTROL to all users",
+            "recommendation": "Restrict bucket ACL to avoid public FULL_CONTROL.",
+            "service": "S3",
+            "severity": "Critical",
+            "id": "S3-001"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutBucketEncryption",
+            "requestParameters": {
+                "bucketName": "unencrypted-bucket",
+                "serverSideEncryptionConfiguration": {}
+            },
+            "eventTime": "2025-05-17T11:45:00Z",
+            "eventID": "s3-high-no-encryption"
+        },
+        "alert": {
+            "resource": "Bucket: unencrypted-bucket",
+            "description": "Bucket has no server-side encryption configured",
+            "recommendation": "Enable server-side encryption on buckets.",
+            "service": "S3",
+            "severity": "High",
+            "id": "S3-002"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutBucketLogging",
+            "requestParameters": {
+                "bucketName": "my-bucket",
+                "bucketLoggingStatus": {}
+            },
+            "eventTime": "2025-05-17T11:50:00Z",
+            "eventID": "s3-medium-no-logging"
+        },
+        "alert": {
+            "resource": "Bucket: my-bucket",
+            "description": "Bucket logging is not enabled",
+            "recommendation": "Enable logging for S3 buckets.",
+            "service": "S3",
+            "severity": "Medium",
+            "id": "S3-003"
+        }
+    },
+    {
+        "log": {
+            "eventName": "PutBucketPolicy",
+            "requestParameters": {
+                "bucketName": "example-bucket",
+                "policy": "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"s3:GetObject\",\"Resource\":\"arn:aws:s3:::example-bucket/*\"}]}"
+            },
+            "eventTime": "2025-05-17T11:55:00Z",
+            "eventID": "s3-low-wildcard"
+        },
+        "alert": {
+            "resource": "Bucket: example-bucket",
+            "description": "Bucket policy uses wildcard permissions",
+            "recommendation": "Avoid wildcard permissions in bucket policies.",
+            "service": "S3",
+            "severity": "Low",
+            "id": "S3-004"
+        }
+    }
+]
